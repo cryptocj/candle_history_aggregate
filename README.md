@@ -39,7 +39,8 @@ Here is an example of generating `1m` to `3m` kline data:
   `Close time` - `Open time` ~= 60s, which means this item is the current 1m kline data for 2021-04-29 04:44:00.
 ```
 
-- then `3m` kline data can be generate from previous `1m` kline data
+- If the `Open time` can be divided by the period, then we can generate a new kline data.
+
 ```
 [1619642640000,"54473.77000000","54622.34000000","54421.76000000","54589.13000000","24.68396300",1619642699999,"1344856.59530477",1835,"12.11248400","660055.96038677","0"],
 [1619642700000,"54589.13000000","54589.14000000","54401.00000000","54421.06000000","30.72695400",1619642759999,"1673757.44562674",1803,"15.33394500","835225.62981710","0"],
@@ -48,7 +49,9 @@ Here is an example of generating `1m` to `3m` kline data:
 [1619642880000,"54317.78000000","54333.42000000","54159.00000000","54304.27000000","159.73543500",1619642939999,"8666351.05074717",4218,"62.80211300","3407430.59759074","0"]
 ```
 
-The current `3m` kline data's `Open time` should be `2021-04-29 04:42:00` , and `Close time` is `2021-04-29 04:44:59`, so you need to collect these items between this period.
+The first item's `Open time` is `2021-04-29 04:44:00`, the minute is `44`, and `44 % 3 != 0`, but `42 % 3 == 0` and `45 % 3 == 0`.
+
+So the current `3m` kline data's `Open time` should be `2021-04-29 04:42:00` , and `Close time` should be `2021-04-29 04:44:59`, so you need to collect these items between this period.
 
 and
 ```
